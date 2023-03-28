@@ -12,6 +12,8 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.static(__dirname + "/assets/img"));
 app.use(express.json());
+app.use(require('./routes/users.route'))
+app.use(require('./routes/categories.route'))
 
 const { PORT, MONGO_SERVER } = process.env;
 
