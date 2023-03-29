@@ -6,10 +6,19 @@ const doctorSchema = mongoose.Schema({
   surname: String,
   speciality: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "",
+    ref: "Speciality",
   },
   experience: Number,
   description: String,
+  records: [{
+    date: {
+      type: Date
+    },
+    user: {
+     type: mongoose.SchemaTypes.ObjectId,
+     ref: 'User'
+    }
+  }]
 });
 
 const Doctor = mongoose.model("Doctor", doctorSchema);
