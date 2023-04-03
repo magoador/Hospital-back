@@ -22,6 +22,7 @@ module.exports.UslugaController = {
         name: req.body.name,
         price: req.body.price,
         description: req.body.description,
+        doctor: req.body.doctor,
         category: req.body.category
       });
       res.json(usluga);

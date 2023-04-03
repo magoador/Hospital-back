@@ -4,6 +4,7 @@ const doctorSchema = mongoose.Schema({
   firstName: String,
   lastName: String,
   surname: String,
+  image: String,
   speciality: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Speciality",
