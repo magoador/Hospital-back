@@ -19,7 +19,7 @@ module.exports.doctorController = {
   },
   getAllDoctors: async (req, res) => {
     try {
-      const allDoctors = await Doctor.find();
+      const allDoctors = await Doctor.find().populate('speciality');
       return res.json(allDoctors);
     } catch (err) {
       return res.json(err);
