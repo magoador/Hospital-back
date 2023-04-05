@@ -25,6 +25,12 @@ module.exports.userController = {
                 return res.status(401).json({error: 'Неправильное имя ползователя'})
             }
 
+            const numberPhone = await User.findOne({phone})
+
+            if(!numberPhone) {
+                return res.status(401).json({error: 'Неправильный номер телефона'})
+            }
+            
             const valid = await bcrypt.compare(password, condidate.password)
 
             if(!valid) {
@@ -33,7 +39,8 @@ module.exports.userController = {
 
             const payload = {
                 id: condidate._id,
-                username: condidate.username
+                username: condidate.username,
+                phone: numberPhone.phone
             }
 
             const token = await jwt.sign(payload, process.env.SECRET_JWT, {
