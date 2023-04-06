@@ -15,6 +15,10 @@ const doctorSchema = mongoose.Schema({
     date: {
       type: Date
     },
+    usluga: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Usluga'
+    },
     user: {
      type: mongoose.SchemaTypes.ObjectId,
      ref: 'User'

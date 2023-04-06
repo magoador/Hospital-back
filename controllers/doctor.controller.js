@@ -1,4 +1,5 @@
 const Doctor = require("../models/Doctor.model");
+const moment = require("moment");
 
 module.exports.doctorController = {
   addDoctor: async (req, res) => {
@@ -19,7 +20,7 @@ module.exports.doctorController = {
   },
   getAllDoctors: async (req, res) => {
     try {
-      const allDoctors = await Doctor.find().populate('speciality');
+      const allDoctors = await Doctor.find().populate("speciality");
       return res.json(allDoctors);
     } catch (err) {
       return res.json(err);
@@ -59,6 +60,28 @@ module.exports.doctorController = {
     try {
       const deletedDoctor = await Doctor.findByIdAndDelete(req.params.id);
       return res.json(deletedDoctor);
+    } catch (err) {
+      return res.json(err);
+    }
+  },
+  recordingToDoctor: async (req, res) => {
+    try {
+      // console.log(moment(req.body.date, "D M YYYY HH:mm").utc("+03:00"));
+      const date = moment(req.body.date, "DD-MM-YYYY HH:mm");
+      const record = await Doctor.findByIdAndUpdate(
+        req.params.id,
+        {
+          $push: {
+            records: {
+              date,
+              usluga: req.body.usluga,
+              user: req.body.user,
+            },
+          },
+        },
+        { new: true }
+      );
+      return res.json(record);
     } catch (err) {
       return res.json(err);
     }
