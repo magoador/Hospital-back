@@ -11,6 +11,7 @@ app.use(cors());
 app.use(require("./routes/doctor.route"));
 app.use(require('./routes/speciality.route'))
 app.use(require('./routes/usluga.route'))
+app.use(require('./routes/record.route'))
 app.use(morgan("dev"));
 app.use(express.static(__dirname + "/assets/img/"));
 app.use(express.json());

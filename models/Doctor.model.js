@@ -11,19 +11,6 @@ const doctorSchema = mongoose.Schema({
   },
   experience: Number,
   description: String,
-  records: [{
-    date: {
-      type: Date
-    },
-    usluga: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Usluga'
-    },
-    user: {
-     type: mongoose.SchemaTypes.ObjectId,
-     ref: 'User'
-    }
-  }]
 });
 
 const Doctor = mongoose.model("Doctor", doctorSchema);

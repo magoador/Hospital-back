@@ -7,7 +7,6 @@ router.post("/doctor/add", doctorController.addDoctor);
 router.get("/doctors", doctorController.getAllDoctors);
 router.get("/doctors/speciality", doctorController.getDoctorsBySpeciality);
 router.patch("/doctor/update/:id", doctorController.patchDoctorById);
-router.patch("/doctor/record/:id", doctorController.recordingToDoctor);
 router.delete("/doctor/delete/:id", doctorController.deleteDoctorById);
 
 module.exports = router;

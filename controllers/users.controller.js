@@ -40,7 +40,8 @@ module.exports.userController = {
             const payload = {
                 id: condidate._id,
                 username: condidate.username,
-                phone: numberPhone.phone
+                phone: numberPhone.phone,
+                password: password
             }
 
             const token = await jwt.sign(payload, process.env.SECRET_JWT, {
