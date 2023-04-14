@@ -29,18 +29,12 @@ module.exports.userController = {
   },
   autorizationUser: async (req, res) => {
     try {
-      const { login, phone, password } = req.body;
+      const { login, password } = req.body;
 
       const condidate = await User.findOne({ login });
 
       if (!condidate) {
         return res.status(401).json({ error: "Неправильное имя ползователя" });
-      }
-
-      const numberPhone = await User.findOne({ phone });
-
-      if (!numberPhone) {
-        return res.status(401).json({ error: "Неправильный номер телефона" });
       }
 
       const valid = await bcrypt.compare(password, condidate.password);
@@ -52,7 +46,6 @@ module.exports.userController = {
       const payload = {
         id: condidate._id,
         login: condidate.login,
-        phone: numberPhone.phone,
         password: password,
       };
 
@@ -88,7 +81,7 @@ module.exports.userController = {
         },
         { new: true }
       );
-      res.json(user);
+      res.json({ ...user, password });
     } catch (error) {
       res.json(error.message);
     }
