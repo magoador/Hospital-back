@@ -26,7 +26,7 @@ npm i
 После набрать команду:
 
 ```javascript
-npm start
+npx nodemon
 ```
 
 ## Технологии проекта
